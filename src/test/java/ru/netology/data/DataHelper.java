@@ -130,20 +130,6 @@ public class DataHelper {
         return owner[rnd];
     }
 
-    public static String getInvalidOwnerRegister() {
-        String[] owner = {"SiDORov ivAN", "kuZin PaVeL", "ОлеСя кВасцОВа", "SkvorTsoVA dashA", "ваНя дуроВ", "PANIN petr"};
-        int rnd = new Random().nextInt(owner.length);
-        return owner[rnd];
-    }
-
-    public static String getInvalidOwnerMinLength() {
-        return "P";
-    }
-
-    public static String getInvalidOwnerMaxLength() {
-        return "лывоаылдвлаопвлдаполвадопоплдфаоплофрадлфоаырвплдфырполРАдфаырлыораждывтаимлоистлдЫоващрыфлдваодлЫОВАОРЫЛОПРЛыорвадлфВАЫВАЫП";
-    }
-
     public static String getEmptyOwner() {
         return " ";
     }

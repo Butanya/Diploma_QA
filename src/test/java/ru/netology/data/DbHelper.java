@@ -120,5 +120,4 @@ public class DbHelper {
             assertNull(creditBlock);
         }
     }
-
 }

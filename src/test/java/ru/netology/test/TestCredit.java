@@ -62,7 +62,7 @@ public class TestCredit {
     }
 
     @Test
-    void shouldBuyByDeclineCard() {
+    void shouldNotBuyByDeclineCard() {
         HomePage homePage = new HomePage();
         BuyByCredit buyByCredit = homePage.getPageCredit();
         buyByCredit.enterCardData(getDeclainedCardInfo(), getValidMonth(), getValidYear(), getValidOwner(), getValidCvc());
@@ -73,8 +73,7 @@ public class TestCredit {
 
 
     @Test
-//"Покупка тура с невалидным номером карты"
-    void shouldSendFormWithInvalidCardNumber() {
+    void shouldNotSendFormWithInvalidCardNumber() {
         HomePage homePage = new HomePage();
         BuyByCredit buyByCredit = homePage.getPageCredit();
         buyByCredit.enterCardData(getInvalidCardNumber(), getValidMonth(), getValidYear(), getValidOwner(), getValidCvc());
@@ -84,8 +83,7 @@ public class TestCredit {
     }
 
     @Test
-        //"Отправка формы с пустым полем Номер карты"
-    void shouldSendFormWithoutCardNumber() {
+    void shouldNotSendFormWithoutCardNumber() {
         HomePage homePage = new HomePage();
         BuyByCredit buyByCredit = homePage.getPageCredit();
         buyByCredit.enterCardData(getEmptyCardNumber(), getValidMonth(), getValidYear(), getValidOwner(), getValidCvc());
@@ -95,8 +93,7 @@ public class TestCredit {
     }
 
     @Test
-//"Отправка формы с невалидным месяцем (однозначное числовое значение)"
-    void shouldSendFormWithInvalidMonth1() {
+    void shouldNotSendFormWithInvalidMonth1() {
         HomePage homePage = new HomePage();
         BuyByCredit buyByCredit = homePage.getPageCredit();
         buyByCredit.enterCardData(getApprovedCardInfo(), getInvalidMonth1(), getValidYear(), getValidOwner(), getValidCvc());
@@ -106,8 +103,7 @@ public class TestCredit {
     }
 
     @Test
-//"Отправка формы с невалидным месяцем (неверно указан срок действия карты)"
-    void shouldSendFormWithInvalidMonth2() {
+    void shouldNotSendFormWithInvalidMonth2() {
         HomePage homePage = new HomePage();
         BuyByCredit buyByCredit = homePage.getPageCredit();
         buyByCredit.enterCardData(getApprovedCardInfo(), getInvalidMonth2(), getValidYear(), getValidOwner(), getValidCvc());
@@ -117,8 +113,7 @@ public class TestCredit {
     }
 
     @Test
-//"Отправка формы с пустым месяцем"
-    void shouldSendFormWithoutMonth() {
+    void shouldNotSendFormWithoutMonth() {
         HomePage homePage = new HomePage();
         BuyByCredit buyByCredit = homePage.getPageCredit();
         buyByCredit.enterCardData(getApprovedCardInfo(), getEmptyMonth(), getValidYear(), getValidOwner(), getValidCvc());
@@ -128,8 +123,7 @@ public class TestCredit {
     }
 
     @Test
-//"Отправка формы с невалидным годом (однозначное числовое значение)"
-    void shouldSendFormWithInvalidYearCard1() {
+    void shouldNotSendFormWithInvalidYearCard1() {
         HomePage homePage = new HomePage();
         BuyByCredit buyByCredit = homePage.getPageCredit();
         buyByCredit.enterCardData(getApprovedCardInfo(), getValidMonth(), getInvalidYear(), getValidOwner(), getValidCvc());
@@ -139,8 +133,7 @@ public class TestCredit {
     }
 
     @Test
-//"Отправка формы с невалидным годом (неверно указан срок действия карты)"
-    void shouldSendFormWithInvalidYearCard2() {
+    void shouldNotSendFormWithInvalidYearCard2() {
         HomePage homePage = new HomePage();
         BuyByCredit buyByCredit = homePage.getPageCredit();
         buyByCredit.enterCardData(getApprovedCardInfo(), getValidMonth(), getInvalidLastYear(), getValidOwner(), getValidCvc());
@@ -149,10 +142,8 @@ public class TestCredit {
         checkEmptyOrderEntity();
     }
 
-
     @Test
-//"Отправка формы с пустым полем Год"
-    void shouldSendFormWithoutYear() {
+    void shouldNotSendFormWithoutYear() {
         HomePage homePage = new HomePage();
         BuyByCredit buyByCredit = homePage.getPageCredit();
         buyByCredit.enterCardData(getApprovedCardInfo(), getValidMonth(), getEmptyYear(), getValidOwner(), getValidCvc());
@@ -162,8 +153,7 @@ public class TestCredit {
     }
 
     @Test
-//"Ввод нулевого значения в поле Год"
-    void shouldSendFormWithNullYear() {
+    void shouldNotSendFormWithNullYear() {
         HomePage homePage = new HomePage();
         BuyByCredit buyByCredit = homePage.getPageCredit();
         buyByCredit.enterCardData(getApprovedCardInfo(), getValidMonth(), getNullYear(), getValidOwner(), getValidCvc());
@@ -173,64 +163,29 @@ public class TestCredit {
     }
 
     @Test
-//"Отправка формы с невалидным данными владельца (значение набрано кириллицей)"
-    void shouldSendFormWithInvalidOwnerCyrillic() {
+    void shouldNotSendFormWithOwnerTypedCyrillic() {
         HomePage homePage = new HomePage();
         BuyByCredit buyByCredit = homePage.getPageCredit();
-        buyByCredit.enterCardData(getApprovedCardInfo(), getValidMonth(), getValidYear(), getInvalidOwnerCyrillic(), getValidCvc());
+        buyByCredit.enterCardData(getApprovedCardInfo(), getValidMonth(), getValidYear(), getInvalidOwnerCyrillic(),
+                getValidCvc());
         buyByCredit.formatError();
         checkEmptyCreditEntity();
         checkEmptyOrderEntity();
     }
 
     @Test
-//"Отправка формы с введеными в поле Владелец цифровых значений и математических символов"
-    void shouldSendFormWithInvalidOwnerMaths() {
+    void shouldNotSendFormWithOwnerMaths() {
         HomePage homePage = new HomePage();
         BuyByCredit buyByCredit = homePage.getPageCredit();
-        buyByCredit.enterCardData(getApprovedCardInfo(), getValidMonth(), getValidYear(), getInvalidOwnerMaths(), getValidCvc());
+        buyByCredit.enterCardData(getApprovedCardInfo(), getValidMonth(), getValidYear(), getInvalidOwnerMaths(),
+                getValidCvc());
         buyByCredit.formatError();
         checkEmptyCreditEntity();
         checkEmptyOrderEntity();
     }
 
     @Test
-//"Отправка формы с введеными в поле Владелец буквенных значений в нижнем и верхнем регистре"
-    void shouldSendFormWithInvalidOwnerRegister() {
-        HomePage homePage = new HomePage();
-        BuyByCredit buyByCredit = homePage.getPageCredit();
-        buyByCredit.enterCardData(getApprovedCardInfo(), getValidMonth(), getValidYear(), getInvalidOwnerRegister(), getValidCvc());
-        buyByCredit.formatError();
-        checkEmptyCreditEntity();
-        checkEmptyOrderEntity();
-    }
-
-    @Test
-//"Отправка формы с введеным в поле Владелец одной буквы (минимальная длина)"
-    void shouldSendFormWithInvalidOwnerMinLength() {
-        HomePage homePage = new HomePage();
-        BuyByCredit buyByCredit = homePage.getPageCredit();
-        buyByCredit.enterCardData(getApprovedCardInfo(), getValidMonth(), getValidYear(), getInvalidOwnerMinLength(), getValidCvc());
-        buyByCredit.formatError();
-        checkEmptyCreditEntity();
-        checkEmptyOrderEntity();
-    }
-
-    @Test
-//"Отправка формы с введеными в поле Владелец 270 буквенных значений (максимальная длина поля)"
-    void shouldSendFormWithInvalidOwnerMaxLength() {
-        HomePage homePage = new HomePage();
-        BuyByCredit buyByCredit = homePage.getPageCredit();
-        buyByCredit.enterCardData(getApprovedCardInfo(), getValidMonth(), getValidYear(), getInvalidOwnerMaxLength(), getValidCvc());
-        buyByCredit.formatError();
-        checkEmptyCreditEntity();
-        checkEmptyOrderEntity();
-    }
-
-
-    @Test
-//"Отправка формы с пустым полем Владелец"
-    void shouldSendFormWithInvalidOwnerEmpty() {
+    void shouldNotSendFormWithOwnerEmpty() {
         HomePage homePage = new HomePage();
         BuyByCredit buyByCredit = homePage.getPageCredit();
         buyByCredit.enterCardData(getApprovedCardInfo(), getValidMonth(), getValidYear(), getEmptyOwner(), getValidCvc());
@@ -240,8 +195,7 @@ public class TestCredit {
     }
 
     @Test
-//"Отправка формы с невалидным CVC/CCV (однозначное числовое значение)"
-    void shouldSendFormWithInvalidCvc() {
+    void shouldNotSendFormWithInvalidCvc() {
         HomePage homePage = new HomePage();
         BuyByCredit buyByCredit = homePage.getPageCredit();
         buyByCredit.enterCardData(getApprovedCardInfo(), getValidMonth(), getValidYear(), getValidOwner(), getInvalidCvc());
@@ -251,19 +205,7 @@ public class TestCredit {
     }
 
     @Test
-//"Отправка формы с невалидным CVC/CCV (проверка на 000)"
-    void shouldSendFormWithNullCvc() {
-        HomePage homePage = new HomePage();
-        BuyByCredit buyByCredit = homePage.getPageCredit();
-        buyByCredit.enterCardData(getApprovedCardInfo(), getValidMonth(), getValidYear(), getValidOwner(), getNullCvc());
-        buyByCredit.formatError();
-        checkEmptyCreditEntity();
-        checkEmptyOrderEntity();
-    }
-
-    @Test
-//"Отправка формы с невалидным CVC/CCV (пустое поле)"
-    void shouldSendFormWitheEmptyCvc() {
+    void shouldNotSendFormWitheEmptyCvc() {
         HomePage homePage = new HomePage();
         BuyByCredit buyByCredit = homePage.getPageCredit();
         buyByCredit.enterCardData(getApprovedCardInfo(), getValidMonth(), getValidYear(), getValidOwner(), getEmptyCvc());
@@ -271,6 +213,4 @@ public class TestCredit {
         checkEmptyCreditEntity();
         checkEmptyOrderEntity();
     }
-
-
 }
