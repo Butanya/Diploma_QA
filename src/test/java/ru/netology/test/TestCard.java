@@ -65,7 +65,7 @@ public class TestCard {
     void shouldNotBuyByDeclineCard() {
         var homePage = new HomePage();
         var buyByCard = homePage.getPageByCard();
-        buyByCard.enterCardData(getDeclainedCardInfo(), getValidMonth(), getValidYear(), getValidOwner(), getValidCvc());
+        buyByCard.enterCardData(getDeclinedCardInfo(), getValidMonth(), getValidYear(), getValidOwner(), getValidCvc());
         buyByCard.getErrorMessage();
         assertEquals(declinedCard.getStatus(), payData().getStatus());
         checkEmptyOrderEntity();
@@ -117,6 +117,16 @@ public class TestCard {
         HomePage homePage = new HomePage();
         var buyByCard = homePage.getPageByCard();
         buyByCard.enterCardData(getApprovedCardInfo(), getEmptyMonth(), getValidYear(), getValidOwner(), getValidCvc());
+        buyByCard.formatError();
+        checkEmptyPaymentEntity();
+        checkEmptyOrderEntity();
+    }
+
+    @Test
+    void shouldNotSendFormWithNullMonth() {
+        HomePage homePage = new HomePage();
+        var buyByCard = homePage.getPageByCard();
+        buyByCard.enterCardData(getApprovedCardInfo(), getNullMonth(), getValidYear(), getValidOwner(), getValidCvc());
         buyByCard.formatError();
         checkEmptyPaymentEntity();
         checkEmptyOrderEntity();
@@ -209,6 +219,16 @@ public class TestCard {
         HomePage homePage = new HomePage();
         BuyByCard buyByCard = homePage.getPageByCard();
         buyByCard.enterCardData(getApprovedCardInfo(), getValidMonth(), getValidYear(), getValidOwner(), getEmptyCvc());
+        buyByCard.formatError();
+        checkEmptyPaymentEntity();
+        checkEmptyOrderEntity();
+    }
+
+    @Test
+    void shouldSendFormWithNullCvc() {
+        HomePage homePage = new HomePage();
+        BuyByCard buyByCard = homePage.getPageByCard();
+        buyByCard.enterCardData(getApprovedCardInfo(), getValidMonth(), getValidYear(), getValidOwner(), getNullCvc());
         buyByCard.formatError();
         checkEmptyPaymentEntity();
         checkEmptyOrderEntity();

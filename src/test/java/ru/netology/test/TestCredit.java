@@ -65,7 +65,7 @@ public class TestCredit {
     void shouldNotBuyByDeclineCard() {
         HomePage homePage = new HomePage();
         BuyByCredit buyByCredit = homePage.getPageCredit();
-        buyByCredit.enterCardData(getDeclainedCardInfo(), getValidMonth(), getValidYear(), getValidOwner(), getValidCvc());
+        buyByCredit.enterCardData(getDeclinedCardInfo(), getValidMonth(), getValidYear(), getValidOwner(), getValidCvc());
         buyByCredit.getErrorMessage();
         assertEquals(declinedCard.getStatus(), creditData().getStatus());
         checkEmptyOrderEntity();
@@ -211,6 +211,16 @@ public class TestCredit {
         buyByCredit.enterCardData(getApprovedCardInfo(), getValidMonth(), getValidYear(), getValidOwner(), getEmptyCvc());
         buyByCredit.formatError();
         checkEmptyCreditEntity();
+        checkEmptyOrderEntity();
+    }
+
+    @Test
+    void shouldSendFormWithNullCvc() {
+        HomePage homePage = new HomePage();
+        BuyByCard buyByCard = homePage.getPageByCard();
+        buyByCard.enterCardData(getApprovedCardInfo(), getValidMonth(), getValidYear(), getValidOwner(), getNullCvc());
+        buyByCard.formatError();
+        checkEmptyPaymentEntity();
         checkEmptyOrderEntity();
     }
 }

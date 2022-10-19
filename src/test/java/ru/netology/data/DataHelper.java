@@ -53,7 +53,7 @@ public class DataHelper {
         return "4444 4444 4444 4441";
     }
 
-    public static String getDeclainedCardInfo() {
+    public static String getDeclinedCardInfo() {
         return "4444 4444 4444 4442";
     }
 
