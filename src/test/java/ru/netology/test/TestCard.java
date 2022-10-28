@@ -97,7 +97,7 @@ public class TestCard {
         HomePage homePage = new HomePage();
         var buyByCard = homePage.getPageByCard();
         buyByCard.enterCardData(getApprovedCardInfo(), getInvalidMonth1(), getValidYear(), getValidOwner(), getValidCvc());
-        buyByCard.invalidError();
+        buyByCard.formatError();
         checkEmptyPaymentEntity();
         checkEmptyOrderEntity();
     }
@@ -147,7 +147,7 @@ public class TestCard {
         HomePage homePage = new HomePage();
         BuyByCard buyByCard = homePage.getPageByCard();
         buyByCard.enterCardData(getApprovedCardInfo(), getValidMonth(), getInvalidLastYear(), getValidOwner(), getValidCvc());
-        buyByCard.formatError();
+        buyByCard.expiredError();
         checkEmptyPaymentEntity();
         checkEmptyOrderEntity();
     }
@@ -184,7 +184,7 @@ public class TestCard {
     }
 
     @Test
-    void shouldSendFormWithOwnerMaths() {
+    void shouldNotSendFormWithOwnerMaths() {
         HomePage homePage = new HomePage();
         BuyByCard buyByCard = homePage.getPageByCard();
         buyByCard.enterCardData(getApprovedCardInfo(), getValidMonth(), getValidYear(), getInvalidOwnerMaths(),
@@ -225,7 +225,7 @@ public class TestCard {
     }
 
     @Test
-    void shouldSendFormWithNullCvc() {
+    void shouldNotSendFormWithNullCvc() {
         HomePage homePage = new HomePage();
         BuyByCard buyByCard = homePage.getPageByCard();
         buyByCard.enterCardData(getApprovedCardInfo(), getValidMonth(), getValidYear(), getValidOwner(), getNullCvc());

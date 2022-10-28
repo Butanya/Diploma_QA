@@ -97,7 +97,7 @@ public class TestCredit {
         HomePage homePage = new HomePage();
         BuyByCredit buyByCredit = homePage.getPageCredit();
         buyByCredit.enterCardData(getApprovedCardInfo(), getInvalidMonth1(), getValidYear(), getValidOwner(), getValidCvc());
-        buyByCredit.invalidError();
+        buyByCredit.formatError();
         checkEmptyCreditEntity();
         checkEmptyOrderEntity();
     }
@@ -137,7 +137,7 @@ public class TestCredit {
         HomePage homePage = new HomePage();
         BuyByCredit buyByCredit = homePage.getPageCredit();
         buyByCredit.enterCardData(getApprovedCardInfo(), getValidMonth(), getInvalidLastYear(), getValidOwner(), getValidCvc());
-        buyByCredit.formatError();
+        buyByCredit.expiredError();
         checkEmptyCreditEntity();
         checkEmptyOrderEntity();
     }
@@ -215,7 +215,7 @@ public class TestCredit {
     }
 
     @Test
-    void shouldSendFormWithNullCvc() {
+    void shouldNotSendFormWithNullCvc() {
         HomePage homePage = new HomePage();
         BuyByCard buyByCard = homePage.getPageByCard();
         buyByCard.enterCardData(getApprovedCardInfo(), getValidMonth(), getValidYear(), getValidOwner(), getNullCvc());
