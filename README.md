@@ -9,9 +9,7 @@
 
 * Для запуска приложения необходим Docker или Docker Toolbox.
 
-Примечание: Приложение запускалось через Docker на локальной машине.
-
-* склонировать репозиторий https://github.com/Butanya/Diploma_QA.git
+* склонировать репозиторий `https://github.com/Butanya/Diploma_QA.git`
 
 * переключиться в папку Diploma_QA
 
@@ -19,19 +17,19 @@
 
 * скачать нужный образ командой docker image pull <имя образа>
 
-* запустить docker container docker-compose up -d. Дождаться пока контейнеры запустятся
+* запустить `docker container docker-compose up -d`. Дождаться пока контейнеры запустятся
 
 * в терминале IntelliJ IDEA запустить SUT:
 
-  - с использованием БД MySQL командой java "-Dspring.datasource.url=jdbc:mysql://localhost:3300/app" -jar artifacts/aqa-shop.jar
-  - с использованием БД PostgreSQL командой java -jar artifacts/aqa-shop.jar "-Dspring.datasource.url=jdbc:postgresql://localhost:5432/app"
+  - с использованием БД MySQL командой `java "-Dspring.datasource.url=jdbc:mysql://localhost:3300/app" -jar artifacts/aqa-shop.jar`
+  - с использованием БД PostgreSQL командой `java -jar artifacts/aqa-shop.jar "-Dspring.datasource.url=jdbc:postgresql://localhost:5432/app"`
 
 * запустить автотесты командой:
 
   - для конфигурации БД MySql:
-./gradlew clean test "-Ddatasource.url=jdbc:mysql://localhost:3300/app"
+`./gradlew clean test "-Ddatasource.url=jdbc:mysql://localhost:3300/app"`
   - для конфигурации БД PostgreSQL:
-./gradlew clean test "-Ddatasource.url=jdbc:postgresql://localhost:5432/app"
+`./gradlew clean test "-Ddatasource.url=jdbc:postgresql://localhost:5432/app"`
 
 * запустить отчеты командой:
 
@@ -41,4 +39,4 @@
 
 * остановить SUT комбдинацией клавиш CTRL+C
 
-* Остановить контейнеры командой docker-compose stop и после удалить контейнеры командой docker-compose down
+* остановить контейнеры командой docker-compose stop, удалить контейнеры командой docker-compose down
