@@ -1,7 +1,7 @@
 # Дипломный проект профессии "Тестировщик"
 
 ## Документация по проекту
-1. План тестирования [https://github.com/Butanya/Diploma_QA/blob/master/Plan.md]
+1. [План тестирования](https://github.com/Butanya/Diploma_QA/blob/master/Plan.md)
 2. Отчет по итогам автоматизированного тестирования
 3. Отчет по итогам автоматизации
 
