@@ -123,6 +123,16 @@ public class TestCredit {
     }
 
     @Test
+    void shouldNotSendFormWithNullMonth() {
+        HomePage homePage = new HomePage();
+        var buyByCard = homePage.getPageByCard();
+        buyByCard.enterCardData(getApprovedCardInfo(), getNullMonth(), getValidYear(), getValidOwner(), getValidCvc());
+        buyByCard.formatError();
+        checkEmptyPaymentEntity();
+        checkEmptyOrderEntity();
+    }
+
+    @Test
     void shouldNotSendFormWithInvalidYearCard1() {
         HomePage homePage = new HomePage();
         BuyByCredit buyByCredit = homePage.getPageCredit();

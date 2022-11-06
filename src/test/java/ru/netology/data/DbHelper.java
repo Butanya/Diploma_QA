@@ -15,10 +15,9 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class DbHelper {
 
-    private static String url = "jdbc:mysql://localhost:3300/app";
-    //    private static String url = "jdbc:postgresql://localhost:5432/app";
-    private static String user = "user";
-    private static String password = "pass";
+    private static String url = System.getProperty("db.url");
+    private static String user = System.getProperty("db.user");
+    private static String password = System.getProperty("db.password");
 
     public DbHelper() {
     }
